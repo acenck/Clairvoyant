@@ -6,6 +6,26 @@
     <h1 class="display-4">Clairvoyant</h1>
     <p>This is the foundation page for our new Liftoff app.</p>
 
-   
+    
 </div>
 
+<div>
+    <table class="table">
+        <tr>
+            <td><a asp-controller="Contacts" asp-action="Add">Add Contact</a></td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+    </table>
+</div>
+
+
+<form>
+
+    <div class="form-group">
+        <label for="exampleInputContact"></label>
+        <input type="text" class="form-control" id="Contact" aria-describedby="Contact" placeholder="Enter name">
+        
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>

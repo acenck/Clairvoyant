@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Clairvoyant.Controllers
 {
-    public class Contacts : Controller
+    public class ContactsController : Controller
     {
         public IActionResult Index()
         {
@@ -28,7 +28,7 @@ namespace Clairvoyant.Controllers
             ContactData.Add(newContact);
 
 
-            return View();
+            return Redirect("~/"); 
         }
 
 

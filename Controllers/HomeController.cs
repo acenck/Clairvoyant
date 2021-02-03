@@ -1,4 +1,5 @@
-﻿using Clairvoyant.Models;
+﻿using Clairvoyant.Data;
+using Clairvoyant.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -20,6 +21,8 @@ namespace Clairvoyant.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.contacts = ContactData.GetAll();
+
             return View();
         }
 

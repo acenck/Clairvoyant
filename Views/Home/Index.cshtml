@@ -29,3 +29,30 @@
     </div>
     <button type="submit" class="btn btn-primary">Search</button>
 </form>
+
+
+
+
+@if(ViewBag.contacts.Count == 0)
+{
+    <div class="text-center">
+        <p>No Contact library empty</p>
+    </div>
+}
+else
+{
+  <table class="table">
+     @foreach (var contact in ViewBag.contacts)
+     {
+        <tr>
+            <td>@contact.FirstName</td>
+            <td>@contact.LastName</td>
+        </tr>
+     }
+  </table>
+
+
+
+
+
+}

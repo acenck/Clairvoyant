@@ -31,6 +31,28 @@ namespace Clairvoyant.Controllers
             return Redirect("~/"); 
         }
 
+        [HttpGet]
+        [Route("Contacts/Edit/{contactId}")]
+        public IActionResult Edit(int contactId)
+        {
+            ViewBag.contactToEdit = ContactData.GetById(contactId);
+            return View();
+        }
+
+        [HttpPost]
+        [Route("/Contacts/Edit")]
+        public IActionResult SubmitEditContactForm(int contactId, string firstname, string lastname, string phone, string email)
+        {
+            var updated = ContactData.GetById(contactId);
+
+            updated.FirstName = firstname;
+            updated.LastName = lastname;
+            updated.Phone = phone;
+            updated.Email = email;
+
+           return Redirect("~/");
+        }
+
 
     }
 }

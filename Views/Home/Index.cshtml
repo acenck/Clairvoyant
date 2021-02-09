@@ -9,56 +9,60 @@
     
 </div>
 
-<div>
-    <table class="table">
-        <tr>
-            <td><a asp-controller="Contacts" asp-action="Add">Add Contact</a></td>
-            <td>Edit</td>
-            <td>Delete</td>
-        </tr>
-    </table>
-</div>
+<!--TO DO: display current user initials in centered circle with displayed name beneath-->
+<body>
 
-
-<form>
-
-    <div class="d-flex">
-        <label for="exampleInputContact"></label>
-        <input class="form-control" type="text" id="Contact" aria-describedby="Contact" placeholder="Search">
-        <button type="submit" class="btn btn-primary">></button>
-        
+    <div>
+        <table class="table">
+            <tr>
+                <td><a asp-controller="Contacts" asp-action="Add">Add Contact</a></td>
+                <td>Edit</td>
+                <td>Delete</td>
+            </tr>
+        </table>
     </div>
+
+    <!--TO DO: add search functionality-->
+    <form>
+
+        <div class="d-flex">
+            <label for="exampleInputContact"></label>
+            <input class="form-control" type="text" id="Contact" aria-describedby="Contact" placeholder="Search">
+            <button type="submit" class="btn btn-primary">></button>
+        
+        </div>
    
     
 
-</form>
+    </form>
 
+</body>
 
+    <!--TO DO: sort contacts by last name-->
+    @if(ViewBag.contacts.Count == 0)
+    {
+        <div class="container text-center">
+            <p>No Contact library empty</p>
+        </div>
+    }
+    else
+    {
+      <div class="container">
+          <table class="table table-hover">
 
-
-@if(ViewBag.contacts.Count == 0)
-{
-    <div class="text-center">
-        <p>No Contact library empty</p>
-    </div>
-}
-else
-{
-  <div class="container">
-      <table class="table table-hover">
-
-          @foreach (var contact in ViewBag.contacts)
-          {
+              @foreach (var contact in ViewBag.contacts)
+              {
               
-              <tr onclick="location.href = '@(Url.Action("Edit", "Contacts", new { contactId = contact.Id }))'">
-                  <td>@contact.FirstName</td>
-                  <td>@contact.LastName</td>
-              </tr>
+                  <tr onclick="location.href = '@(Url.Action("Detail", "Contact", new { contactId = contact.Id }))'">
+                      <td>@contact.FirstName</td>
+                      <td>@contact.LastName</td>
+                  </tr>
                   
-          }
+              }
               
-      </table>
-  </div>
+          </table>
+      </div>
+
 
 
 

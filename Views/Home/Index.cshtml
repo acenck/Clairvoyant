@@ -12,24 +12,20 @@
 <!--TO DO: display current user initials in centered circle with displayed name beneath-->
 <body>
 
-    <div>
-        <table class="table">
-            <tr>
-                <td><a asp-controller="Contacts" asp-action="Add">Add Contact</a></td>
-                <td>Edit</td>
-                <td>Delete</td>
-            </tr>
-        </table>
+    <div class="text-center display-2">
+        <h1>NA</h1>
+        <h3>Username</h3>
     </div>
 
     <!--TO DO: add search functionality-->
     <form>
 
         <div class="d-flex">
+            <input type="button" class="btn btn-primary" value="+" onclick="location.href= '@(Url.Action("Add", "Contacts"))'">
             <label for="exampleInputContact"></label>
             <input class="form-control" type="text" id="Contact" aria-describedby="Contact" placeholder="Search">
             <button type="submit" class="btn btn-primary">></button>
-        
+
         </div>
    
     

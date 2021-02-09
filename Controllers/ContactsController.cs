@@ -53,6 +53,15 @@ namespace Clairvoyant.Controllers
            return Redirect("~/");
         }
 
+        [HttpGet]
+        [Route("Contacts/Delete")]
+        public IActionResult Delete(int contactId)
+        {
+            ContactData.Remove(contactId);
+
+            return Redirect("~/");
+        }
+
 
     }
 }

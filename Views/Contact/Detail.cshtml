@@ -4,26 +4,37 @@
 @{
 }
 @{ var contact = ViewBag.contactToDisplay;}
-<div class="container shadow">
+<div>
 
 
-<div class="text-center">
-    <h1>Contact Initials HERE</h1>
-    <h3>@ViewBag.contactFullName</h3>
-</div>
+    <div class="text-center">
+        <h1>Contact Initials HERE</h1>
+        <h3>@ViewBag.contactFullName</h3>
+    </div>
 
-<div class="text-md-center">
-    <table class="table table-bordered">
-        <tr>
-            <th>Phone</th>
-            <td>@contact.Phone</td>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <td>@contact.Email</td>
-        </tr>
-    </table>
+    <div class="text-md-center">
+        <table class="table table-bordered">
+            <tr>
+                <th>Phone</th>
+                <td>@contact.Phone</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>@contact.Email</td>
+            </tr>
+        </table>
 
-</div>
+    </div>
+
+    <div class="text-center">
+        <input type="button" class="btn btn-outline-primary" value="Edit" onclick="location.href= '@(Url.Action("Edit", "Contacts", new { contactId = contact.Id}))'">
+
+        <form style="display:inline-block;" method="get" action="/contacts/delete">
+            <input type="hidden" value="@contact.Id" name="contactId" />
+            <input type="submit" class="btn btn-danger" value="Delete" />
+        </form>
+    </div>
+
+
 
 </div>

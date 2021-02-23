@@ -32,15 +32,15 @@ namespace Clairvoyant.Controllers
         [Route("Contacts/Add")]
         public ActionResult Add(Contact contact)
         {
-            /*ContactData.Add(newContact);*/
-
+ 
             _contactService.Create(contact);
 
-            /*return CreatedAtRoute("AddContact", new { id = contact.Id.ToString() }, contact);*/
-
             return Redirect("~/");
-
         }
+
+           
+
+
 
         [HttpGet]
         [Route("Contacts/Edit/{contactId}")]
@@ -69,61 +69,24 @@ namespace Clairvoyant.Controllers
 
             return Redirect("~/");
         }
-
-        /*[HttpPut("{id:length(24)}")]
-        public IActionResult Update(string id, Contact contactIn)
-        {
-            var contact = _contactService.Get(id);
-
-            if (contact == null)
-            {
-                return NotFound();
-            }
-
-            _contactService.Update(string id, Contact contactIn);
-
-            return NoContent();
-        }
-         */
-
-        /*
-                [HttpDelete("{id:length(24)}")]
-                public IActionResult Delete(string id)
-                {
-                    var contact = _contactService.Get(id);
-          
-                    if (contact == null)
-                    {
-                        return NotFound();
-                    }
-
-                    _contactService.Remove(contact.Id);
-
-                    return NoContent();
-                }*/
-
-
-
-
-
-
-
-
-
-
-        // Everything below this is original code prior to MONGO Update
-
-        /* public IActionResult Index()
-         {
-             return View();
-         }*/
-
-
-
-
-
-
-
-
     }
 }
+
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

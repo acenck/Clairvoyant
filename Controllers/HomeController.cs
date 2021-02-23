@@ -33,7 +33,7 @@ namespace Clairvoyant.Controllers
 
         public IActionResult Index()
         {
-            /*List<Contact> contacts = new List<Contact>(ContactData.GetAll());*/
+           
 
             var contacts = _contactService.Get();
             

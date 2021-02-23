@@ -65,6 +65,7 @@ namespace Clairvoyant.Controllers
         [Route("Contacts/Delete")]
         public IActionResult Delete(string contactId)
         {
+            ViewBag.Message = "Form submitted.";
             _contactService.Remove(contactId);
 
             return Redirect("~/");

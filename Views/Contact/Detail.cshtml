@@ -6,42 +6,52 @@
 
 @model Contact
 
-@{
-}
-@{ var contact = ViewBag.contactToDisplay;}
+
+
 <div>
 
 
-    <div class="text-center">
-        <h1>Contact Initials HERE</h1>
-        <h3>@ViewBag.contactFullName</h3>
-    </div>
-
-    <div class="text-md-center">
-        <table class="table table-bordered">
-            <tr>
-                <th>Phone</th>
-                <td>@Model.Phone</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>@Model.Email</td>
-            </tr>
-        </table>
-        <div>
-            <p><small class="text-muted">contact created on @Model.DateCreated</small></p>
+        <div class="text-center">
+            <h1>Contact Initials HERE</h1>
+            <h3>@ViewBag.contactFullName</h3>
         </div>
+
+        <div class="text-md-center">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Phone</th>
+                    <td>@Model.Phone</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>@Model.Email</td>
+                </tr>
+            </table>
+            <div>
+                <p><small class="text-muted">contact created on @Model.DateCreated</small></p>
+            </div>
+    
+
+            <div class="text-center">
+                <input type="button" class="btn btn-outline-primary" value="Edit" onclick="location.href= '@(Url.Action("Edit", "Contacts", new { contactId = Model.Id}))'">
+
+                <form style="display:inline-block;" method="get" action="/contacts/delete" >
+                    <input type="hidden" value="@Model.Id" name="contactId" />
+                    <input type="submit"  class="btn btn-danger" value="Delete" />
+                </form>
+                <script>
+                </script>
+            </div>
+
+
     </div>
-
-    <div class="text-center">
-        <input type="button" class="btn btn-outline-primary" value="Edit" onclick="location.href= '@(Url.Action("Edit", "Contacts", new { contactId = Model.Id}))'">
-
-        <form style="display:inline-block;" method="get" action="/contacts/delete">
-            <input type="hidden" value="@Model.Id" name="contactId" />
-            <input type="submit" class="btn btn-danger" value="Delete" />
-        </form>
-    </div>
-
 
 
 </div>
+   @* jQuery(document).ready(function () {
+                jQuery('[data-confirm]').click(function (e) {
+                    if (!confirm(jQuery(this).attr("data-confirm"))) {
+                        e.preventDefault();
+                    }
+                });
+            });*@

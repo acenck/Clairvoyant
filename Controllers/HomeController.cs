@@ -36,7 +36,8 @@ namespace Clairvoyant.Controllers
            
 
             var contacts = _contactService.Get();
-            
+
+            contacts.Sort((x, y) => string.Compare(x.LastName, y.LastName)); 
 
             return View(contacts);
         }

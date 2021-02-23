@@ -1,8 +1,12 @@
+using Clairvoyant.Models;
+using Clairvoyant.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +26,22 @@ namespace Clairvoyant
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<ClairvoyantDatabaseSettings>(
+                Configuration.GetSection(nameof(ClairvoyantDatabaseSettings)));
+
+            services.AddSingleton<IClairvoyantDatabaseSettings>(sp =>
+               sp.GetRequiredService<IOptions<ClairvoyantDatabaseSettings>>().Value);
+
+            services.AddSingleton<ContactService>();
+
             services.AddControllersWithViews();
+                
         }
+
+
+
+
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

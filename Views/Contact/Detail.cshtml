@@ -1,6 +1,11 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+
+@using Clairvoyant.Models
+
+@model Contact
+
 @{
 }
 @{ var contact = ViewBag.contactToDisplay;}
@@ -16,21 +21,23 @@
         <table class="table table-bordered">
             <tr>
                 <th>Phone</th>
-                <td>@contact.Phone</td>
+                <td>@Model.Phone</td>
             </tr>
             <tr>
                 <th>Email</th>
-                <td>@contact.Email</td>
+                <td>@Model.Email</td>
             </tr>
         </table>
-
+        <div>
+            <p><small class="text-muted">contact created on @Model.DateCreated</small></p>
+        </div>
     </div>
 
     <div class="text-center">
-        <input type="button" class="btn btn-outline-primary" value="Edit" onclick="location.href= '@(Url.Action("Edit", "Contacts", new { contactId = contact.Id}))'">
+        <input type="button" class="btn btn-outline-primary" value="Edit" onclick="location.href= '@(Url.Action("Edit", "Contacts", new { contactId = Model.Id}))'">
 
         <form style="display:inline-block;" method="get" action="/contacts/delete">
-            <input type="hidden" value="@contact.Id" name="contactId" />
+            <input type="hidden" value="@Model.Id" name="contactId" />
             <input type="submit" class="btn btn-danger" value="Delete" />
         </form>
     </div>

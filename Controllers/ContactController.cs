@@ -1,4 +1,5 @@
 ﻿using Clairvoyant.Data;
+using Clairvoyant.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,13 @@ namespace Clairvoyant.Controllers
 {
     public class ContactController : Controller
     {
+        private readonly ContactService _contactService;
+
+        public ContactController(ContactService contactService)
+        {
+            _contactService = contactService;
+        }
+
         public IActionResult Index()
         {
             
@@ -17,12 +25,13 @@ namespace Clairvoyant.Controllers
 
         [HttpGet]
         [Route("Contact/Detail/{contactId}")]
-        public IActionResult Detail(int contactId)
+        public IActionResult Detail(string contactId)
         {
-            ViewBag.contactToDisplay = ContactData.GetById(contactId);
+            ViewBag.contactToDisplay = _contactService.Get(contactId);
             ViewBag.contactFullName = $"{ViewBag.contactToDisplay.FirstName} {ViewBag.contactToDisplay.LastName}";
-            
-            return View();
+            var contactSelected = _contactService.Get(contactId);
+
+            return View(contactSelected);
         }
     }
 }

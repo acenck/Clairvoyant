@@ -4,39 +4,43 @@
 @{
 }
 
+@using Clairvoyant.Models
+
+@model Contact
+
 <div class="text-center">
     <h1>
         Edit Contact
     </h1>
 </div>
 
-<form method="post" action="/contacts/edit" center="text-center">
+<form asp-action="edit"  center="text-center">
 
-    @{ var cnt = ViewBag.contactToEdit;}
-    <input type="hidden" value="@ViewBag.contactToEdit.Id" name="contactId" />
+    
+    <input type="hidden" value="@Model.Id" name="contactId" />
 
     <div>
         <label>
             First Name
-            <input type="text" name="FirstName" class="form-control" value="@cnt.FirstName" />
+            <input type="text" name="FirstName" class="form-control" value="@Model.FirstName" />
         </label>
     </div>
     <div>
         <label>
             Last Name
-            <input type="text" name="LastName" class="form-control" value="@cnt.LastName" />
+            <input type="text" name="LastName" class="form-control" value="@Model.LastName" />
         </label>
     </div>
     <div>
         <label>
             Phone
-            <input type="text" name="Phone" class="form-control" value="@cnt.Phone" />
+            <input type="text" name="Phone" class="form-control" value="@Model.Phone" />
         </label>
     </div>
     <div>
         <label>
             Email
-            <input type="email" name="Email" class="form-control" value="@cnt.Email" />
+            <input type="email" name="Email" class="form-control" value="@Model.Email" />
         </label>
     </div>
 

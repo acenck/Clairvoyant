@@ -1,5 +1,6 @@
 ﻿using Clairvoyant.Data;
 using Clairvoyant.Models;
+using Clairvoyant.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,18 +13,32 @@ namespace Clairvoyant.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        /*private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+        }*/
+
+        private readonly ContactService _contactService;
+
+        public HomeController(ContactService contactService)
+        {
+            _contactService = contactService;
         }
+
+        [HttpGet]
+        public ActionResult<List<Contact>> Get() =>
+            _contactService.Get();
 
         public IActionResult Index()
         {
-            ViewBag.contacts = ContactData.GetAll();
+            /*List<Contact> contacts = new List<Contact>(ContactData.GetAll());*/
 
-            return View();
+            var contacts = _contactService.Get();
+            
+
+            return View(contacts);
         }
 
         public IActionResult About()

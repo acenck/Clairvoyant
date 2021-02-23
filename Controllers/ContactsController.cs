@@ -1,5 +1,6 @@
 ﻿using Clairvoyant.Data;
 using Clairvoyant.Models;
+using Clairvoyant.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,14 +9,20 @@ using System.Threading.Tasks;
 
 namespace Clairvoyant.Controllers
 {
+
     public class ContactsController : Controller
     {
-        public IActionResult Index()
+        private readonly ContactService _contactService;
+
+        public ContactsController(ContactService contactService)
         {
-            return View();
+            _contactService = contactService;
         }
 
+        
+
         [HttpGet]
+        [Route("Contacts/Add")]
         public IActionResult Add()
         {
             return View();
@@ -23,44 +30,99 @@ namespace Clairvoyant.Controllers
 
         [HttpPost]
         [Route("Contacts/Add")]
-        public IActionResult NewContact(Contact newContact)
+        public ActionResult Add(Contact contact)
         {
-            ContactData.Add(newContact);
+            /*ContactData.Add(newContact);*/
 
+            _contactService.Create(contact);
 
-            return Redirect("~/"); 
+            /*return CreatedAtRoute("AddContact", new { id = contact.Id.ToString() }, contact);*/
+
+            return Redirect("~/");
+
         }
 
         [HttpGet]
         [Route("Contacts/Edit/{contactId}")]
-        public IActionResult Edit(int contactId)
+        public IActionResult Edit(string contactId)
         {
-            ViewBag.contactToEdit = ContactData.GetById(contactId);
-            return View();
+            var contactSelected = _contactService.Get(contactId);
+
+            return View(contactSelected);
         }
 
+        
         [HttpPost]
-        [Route("/Contacts/Edit")]
-        public IActionResult SubmitEditContactForm(int contactId, string firstname, string lastname, string phone, string email)
+        public IActionResult Edit(Contact contact)
         {
-            var updated = ContactData.GetById(contactId);
+            
+            _contactService.Update(contact);
 
-            updated.FirstName = firstname;
-            updated.LastName = lastname;
-            updated.Phone = phone;
-            updated.Email = email;
-
-           return Redirect("~/");
+            return Redirect("~/");
         }
 
         [HttpGet]
         [Route("Contacts/Delete")]
-        public IActionResult Delete(int contactId)
+        public IActionResult Delete(string contactId)
         {
-            ContactData.Remove(contactId);
+            _contactService.Remove(contactId);
 
             return Redirect("~/");
         }
+
+        /*[HttpPut("{id:length(24)}")]
+        public IActionResult Update(string id, Contact contactIn)
+        {
+            var contact = _contactService.Get(id);
+
+            if (contact == null)
+            {
+                return NotFound();
+            }
+
+            _contactService.Update(string id, Contact contactIn);
+
+            return NoContent();
+        }
+         */
+
+        /*
+                [HttpDelete("{id:length(24)}")]
+                public IActionResult Delete(string id)
+                {
+                    var contact = _contactService.Get(id);
+          
+                    if (contact == null)
+                    {
+                        return NotFound();
+                    }
+
+                    _contactService.Remove(contact.Id);
+
+                    return NoContent();
+                }*/
+
+
+
+
+
+
+
+
+
+
+        // Everything below this is original code prior to MONGO Update
+
+        /* public IActionResult Index()
+         {
+             return View();
+         }*/
+
+
+
+
+
+
 
 
     }

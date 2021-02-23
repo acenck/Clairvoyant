@@ -1,20 +1,36 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Clairvoyant.Models
 {
     public class Contact
     {
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
+
+        [BsonElement("FirstName")]
+        [JsonProperty("Name")]
         public string FirstName { get; set; }
+        [BsonElement("LastName")]
         public string LastName { get; set; }
+        [BsonElement("Phone")]
         public string Phone { get; set; }
+        [BsonElement("Email")]
         public string Email { get; set; }
 
-        public int Id { get; }
-        static private int nextId = 1;
+        [BsonElement("Date")]
+        [BsonDateTimeOptions]
+        public DateTime DateCreated { get; set; } = DateTime.Now;
 
+
+        
+/*
         public Contact()
         {
             Id = nextId;
@@ -43,6 +59,6 @@ namespace Clairvoyant.Models
         public override string ToString()
         {
             return FirstName + " " + LastName;
-        }
+        }*/
     }
 }

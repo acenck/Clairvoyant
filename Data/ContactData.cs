@@ -8,7 +8,7 @@ namespace Clairvoyant.Data
 {
     public class ContactData
     {
-        static private Dictionary<int, Contact> Contacts = new Dictionary<int, Contact>();
+        static private Dictionary<string, Contact> Contacts = new Dictionary<string, Contact>();
 
         //Get all
         public static IEnumerable<Contact> GetAll()
@@ -23,13 +23,13 @@ namespace Clairvoyant.Data
         }
 
         //Remove 
-        public static void Remove(int id)
+        public static void Remove(string id)
         {
             Contacts.Remove(id);
         }
 
         // Get by ID
-        public static Contact GetById(int id)
+        public static Contact GetById(string id)
         {
             return Contacts[id];
         }

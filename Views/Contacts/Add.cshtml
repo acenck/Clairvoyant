@@ -13,7 +13,7 @@
 </div>
 
 <form asp-action="add" method="post">
-    
+
     <div>
         <label>
             First name
@@ -37,18 +37,37 @@
             Email
             <input type="email" name="Email" class="form-control" />
         </label>
-     </div>
-        <div class="form-group row">
-            <label for="example-datetime-local-input" class="col-2 col-form-label">Date and time</label>
-            <div class="col-10">
-                <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
-            </div>
+    </div>
+
+
+    <div class="form-check inline">
+        <input class="form-check-input"
+               type="checkbox"
+               value=""
+               id="flexCheckDefault"/>
+        <label class="form-check-label" for="flexCheckDefault">
+            Toggle Custom Message
+        </label>
+    </div>
+    <div class="form-check inline">
+        <label>
+            Event Name
+            <input type="text" name="EventName" class="form-control" />
+        </label>
+    </div>
+    <div class="form-group inline">
+        <label for="example-datetime-local-input" class="col-2 col-form-label">Date</label>
+        <div class="col-10">
+            <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
         </div>
+    </div>
 
 
-        <input type="submit" class="btn btn-primary" value="Confirm" /><input type="submit" class="btn btn-outline-primary" value="Cancel" />
+    <input type="submit" class="btn btn-primary" value="Confirm" /><input type="submit" class="btn btn-outline-primary" value="Cancel" />
 
 </form>
+
+
 
 
 

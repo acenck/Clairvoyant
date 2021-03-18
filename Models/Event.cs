@@ -11,31 +11,30 @@ namespace Clairvoyant.Models
     public class Event
     {
 
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
         
-        public string EventType { get; set; }
 
-        public DateTime Date { get; set; } = DateTime.Now;
+        [BsonElement(elementName:"Name")]
+        public string Name { get; set; }
+        [BsonElement(elementName: "Date")]
+        public DateTime Date { get; set; }
 
-        
+        [BsonElement(elementName: "Message")]
         public string Message { get; set; }
 
 
 
 
-        /*public Event()
+        public Event()
         {
 
         }
 
-        public Event(string type, DateTime date, string message)
+        public Event(string name, DateTime date, string message)
         {
-            EventType = type;
+            Name = name;
             Date = date;
             Message = message;
         }
-*/
+
     }
 }

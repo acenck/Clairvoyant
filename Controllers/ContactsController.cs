@@ -27,7 +27,9 @@ namespace Clairvoyant.Controllers
         [Route("Contacts/Add")]
         public IActionResult Add()
         {
+            
             AddContactViewModel addContactViewModel = new AddContactViewModel();
+            
 
             return View(addContactViewModel);
         }
@@ -36,21 +38,35 @@ namespace Clairvoyant.Controllers
         [Route("Contacts/Add")]
         public ActionResult Add(AddContactViewModel addContactViewModel)
         {
-            Contact newContact = new Contact
+            if (ModelState.IsValid)
             {
-                FirstName = addContactViewModel.FirstName,
-                LastName = addContactViewModel.LastName,
-                Phone = addContactViewModel.Phone,
-                Email = addContactViewModel.Email,
-                FullName = $"{addContactViewModel.FirstName} {addContactViewModel.LastName }"
+
+                
+
+                Contact newContact = new Contact
+                {
+                    FirstName = addContactViewModel.FirstName,
+                    LastName = addContactViewModel.LastName,
+                    Phone = addContactViewModel.Phone,
+                    Email = addContactViewModel.Email,
+                    FullName = $"{addContactViewModel.FirstName} {addContactViewModel.LastName }",
+                    EventType = new Event
+                    {
+                        Name = addContactViewModel.EventType.Name,
+                        Date = addContactViewModel.EventType.Date,
+                        Message = addContactViewModel.EventType.Message
+
+                    }
+                };
+                  
+                _contactService.Create(newContact);
+
+                return Redirect("~/");
 
             };
 
-
+            return View(addContactViewModel);
  
-            _contactService.Create(newContact);
-
-            return Redirect("~/");
         }
 
            

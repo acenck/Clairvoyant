@@ -30,7 +30,7 @@ namespace Clairvoyant.Models
         public DateTime DateCreated { get; set; } = DateTime.Now;
 
         [BsonElement("Event")]
-        public Event Event { get; set; }
+        public Event EventType { get; set; }
 
         private string fullname;
 
@@ -48,43 +48,48 @@ namespace Clairvoyant.Models
             }
         }
 
-       
-
-        
 
 
-        /*  public Contact()
-          {
-              *//*Id = nextId;
-              nextId++;*//*
-          }
 
-          public Contact(string firstname, string lastname, string phone, string email) : this()
-          {
-              FirstName = firstname;
-              LastName = lastname;
-              Phone = phone;
-              Email = email;
 
-          }*/
 
-/*        public override bool Equals(object obj)
+        public Contact()
         {
-            return obj is Contact contact &&
-                   Id == contact.Id;
+            
         }
 
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Id);
-        }
+        public Contact(string firstname, string lastname, string phone, string email, Event eventtype)
+    {
+        FirstName = firstname;
+        LastName = lastname;
+        Phone = phone;
+        Email = email;
+        EventType = eventtype;
+            
 
-        public override string ToString()
-        {
-            return FirstName + " " + LastName;
-        }*/
-
+            
+           
+          
 
     }
+
+    /*        public override bool Equals(object obj)
+            {
+                return obj is Contact contact &&
+                       Id == contact.Id;
+            }
+
+            public override int GetHashCode()
+            {
+                return HashCode.Combine(Id);
+            }
+
+            public override string ToString()
+            {
+                return FirstName + " " + LastName;
+            }*/
+
+
+}
 
     }

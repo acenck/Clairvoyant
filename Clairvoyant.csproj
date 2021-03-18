@@ -5,8 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="LinqKit" Version="1.1.23" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
-    <PackageReference Include="MongoDb.Driver" Version="2.11.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="3.1.12" />
+    <PackageReference Include="MongoDb.Driver" Version="2.12.0" />
   </ItemGroup>
 
 </Project>

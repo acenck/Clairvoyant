@@ -12,7 +12,7 @@
 
 
         <div class="text-center">
-            <h1>Contact Initials HERE</h1>
+            <h1>@Model.FirstName[0]@Model.LastName[0]</h1>
             <h3>@ViewBag.contactFullName</h3>
         </div>
 
@@ -48,10 +48,3 @@
 
 
 </div>
-   @* jQuery(document).ready(function () {
-                jQuery('[data-confirm]').click(function (e) {
-                    if (!confirm(jQuery(this).attr("data-confirm"))) {
-                        e.preventDefault();
-                    }
-                });
-            });*@

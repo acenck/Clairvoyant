@@ -1,6 +1,7 @@
 ﻿using Clairvoyant.Data;
 using Clairvoyant.Services;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;

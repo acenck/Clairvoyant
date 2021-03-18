@@ -19,23 +19,29 @@
 
     <div class="text-center display-2">
         <h1>NA</h1>
-        <h3>Username</h3>
+        <h3>Nick Acinelli</h3>
     </div>
-
-    <!--TO DO: add search functionality-->
-    <form>
-
-        <div class="d-flex">
-            <input type="button" class="btn btn-primary" value="+" onclick="location.href= '@(Url.Action("Add", "Contacts"))'">
-            <label for="exampleInputContact"></label>
-            <input class="form-control" type="text" id="Contact" aria-describedby="Contact" placeholder="Search">
-            <button type="submit" class="btn btn-primary">></button>
-
-        </div>
-   
+        <small class="text-muted">Contact total: @ViewBag.contactCount</small>
     
 
-    </form>
+      
+
+
+        <!--TO DO: add search functionality-->
+        <form action="/search/searchresult" method="post">
+
+            <div class="d-flex">
+                <input type="button" class="btn btn-primary" value="+" onclick="location.href= '@(Url.Action("Add", "Contacts"))'">
+                <label for="search"></label>
+                
+                <input class="form-control" type="text" id="search" name="search" aria-describedby="search" placeholder="Search" />
+                <button type="submit" class="btn btn-primary">></button>
+
+            </div>
+        </form>
+
+
+
 
 </body>
 
@@ -43,7 +49,8 @@
     @if(Model.Count == 0)
     {
         <div class="container text-center">
-            <p>No Contact library empty</p>
+            <p>Contact library empty</p>
+            <p><small class="text-muted">add your first contact</small></p>
         </div>
     }
     else
@@ -55,7 +62,8 @@
               {
               
                   <tr onclick="location.href = '@(Url.Action("Detail", "Contact", new { contactId = contact.Id }))'">
-                      <td>@contact.FirstName</td>
+                      <td><span class="dot"></span></td>
+                      <td>@contact.FirstName</td> 
                       <td>@contact.LastName</td>
                   </tr>
                   
@@ -65,11 +73,10 @@
       </div>
 
 
-
-
-
-
-
-
-
 }
+
+
+
+
+
+

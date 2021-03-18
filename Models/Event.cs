@@ -1,0 +1,41 @@
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Clairvoyant.Models
+{
+    
+    public class Event
+    {
+
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
+        
+        public string EventType { get; set; }
+
+        public DateTime Date { get; set; } = DateTime.Now;
+
+        
+        public string Message { get; set; }
+
+
+
+
+        /*public Event()
+        {
+
+        }
+
+        public Event(string type, DateTime date, string message)
+        {
+            EventType = type;
+            Date = date;
+            Message = message;
+        }
+*/
+    }
+}

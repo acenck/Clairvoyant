@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 
 namespace Clairvoyant.Models
 {
+    [BsonIgnoreExtraElements]
     public class Contact
     {
         [BsonId]
@@ -15,7 +16,7 @@ namespace Clairvoyant.Models
         public string Id { get; set; }
 
         [BsonElement("FirstName")]
-        [JsonProperty("Name")]
+        [JsonProperty("FirstName")]
         public string FirstName { get; set; }
         [BsonElement("LastName")]
         public string LastName { get; set; }
@@ -25,27 +26,49 @@ namespace Clairvoyant.Models
         public string Email { get; set; }
 
         [BsonElement("Date")]
-        [BsonDateTimeOptions]
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime DateCreated { get; set; } = DateTime.Now;
 
+        [BsonElement("Event")]
+        public Event Event { get; set; }
+
+        private string fullname;
+
+
+        [BsonElement("FullName")]
+        public string FullName
+        {
+            get
+            {
+                return fullname;
+            }
+            set
+            {
+                fullname = FirstName + LastName;
+            }
+        }
+
+       
 
         
-/*
-        public Contact()
-        {
-            Id = nextId;
-            nextId++;
-        }
 
-        public Contact(string firstname, string lastname, string phone, string email) : this()
-        {
-            FirstName = firstname;
-            LastName = lastname;
-            Phone = phone;
-            Email = email;
-        }
 
-        public override bool Equals(object obj)
+        /*  public Contact()
+          {
+              *//*Id = nextId;
+              nextId++;*//*
+          }
+
+          public Contact(string firstname, string lastname, string phone, string email) : this()
+          {
+              FirstName = firstname;
+              LastName = lastname;
+              Phone = phone;
+              Email = email;
+
+          }*/
+
+/*        public override bool Equals(object obj)
         {
             return obj is Contact contact &&
                    Id == contact.Id;
@@ -60,5 +83,8 @@ namespace Clairvoyant.Models
         {
             return FirstName + " " + LastName;
         }*/
+
+
     }
-}
+
+    }

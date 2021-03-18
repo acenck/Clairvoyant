@@ -8,6 +8,8 @@ namespace Clairvoyant.Models
     public class ClairvoyantDatabaseSettings : IClairvoyantDatabaseSettings
     {
         public string ContactsCollectionName { get; set; }
+
+        public string UsersCollectionName { get; set; }
         public string ConnectionString { get; set; }
         public string DatabaseName { get; set; }
     }
@@ -15,6 +17,8 @@ namespace Clairvoyant.Models
     public interface IClairvoyantDatabaseSettings
     {
         public string ContactsCollectionName { get; set; }
+
+        public string UsersCollectionName { get; set; }
         public string ConnectionString { get; set; }
         public string DatabaseName { get; set; }
     }

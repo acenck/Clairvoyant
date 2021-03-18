@@ -3,6 +3,7 @@ using Clairvoyant.Models;
 using Clairvoyant.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,12 +14,7 @@ namespace Clairvoyant.Controllers
 {
     public class HomeController : Controller
     {
-        /*private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }*/
+     
 
         private readonly ContactService _contactService;
 
@@ -34,8 +30,9 @@ namespace Clairvoyant.Controllers
         public IActionResult Index()
         {
            
-
             var contacts = _contactService.Get();
+
+            ViewBag.contactCount = _contactService.Count();
 
             contacts.Sort((x, y) => string.Compare(x.LastName, y.LastName)); 
 
@@ -57,5 +54,6 @@ namespace Clairvoyant.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }

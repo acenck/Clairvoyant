@@ -1,4 +1,7 @@
 ﻿using Clairvoyant.Models;
+using LinqKit;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -11,12 +14,15 @@ namespace Clairvoyant.Services
     {
         private static IMongoCollection<Contact> _contacts;
 
+        private static IMongoCollection<User> _users;
+
         public ContactService(IClairvoyantDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
             _contacts = database.GetCollection<Contact>(settings.ContactsCollectionName);
+            _users = database.GetCollection<User>(settings.UsersCollectionName);
         }
 
         public List<Contact> Get() =>
@@ -39,6 +45,51 @@ namespace Clairvoyant.Services
 
         public void Remove(string id) =>
             _contacts.DeleteOne(contact => contact.Id == id);
+
+       public List<Contact> SearchByName(string keyword)
+       {
+            var words = keyword.Split(" ");
+            var combinedWords = string.Join("", words);
+            
+            var filter = Builders<Contact>.Filter.Or(
+                Builders<Contact>.Filter.Where(contact => contact.FirstName.ToLower().Contains(keyword.ToLower())),
+                Builders<Contact>.Filter.Where(contact => contact.LastName.ToLower().Contains(keyword.ToLower())),
+                Builders<Contact>.Filter.Where(contact => contact.FullName.ToLower().Contains(combinedWords.ToLower()))
+                );
+
+            var filteredcontacts = _contacts.Find(filter).ToList();
+
+            return filteredcontacts;
+        }
+
+
+
+
+
+
+            
+            
+
+
+        public int Count() =>
+            (int)_contacts.CountDocuments(new BsonDocument());
+
+
+        
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     }

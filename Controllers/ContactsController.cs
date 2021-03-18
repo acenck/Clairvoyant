@@ -1,7 +1,9 @@
 ﻿using Clairvoyant.Data;
 using Clairvoyant.Models;
 using Clairvoyant.Services;
+using Clairvoyant.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,22 +27,33 @@ namespace Clairvoyant.Controllers
         [Route("Contacts/Add")]
         public IActionResult Add()
         {
-            return View();
+            AddContactViewModel addContactViewModel = new AddContactViewModel();
+
+            return View(addContactViewModel);
         }
 
         [HttpPost]
         [Route("Contacts/Add")]
-        public ActionResult Add(Contact contact)
+        public ActionResult Add(AddContactViewModel addContactViewModel)
         {
+            Contact newContact = new Contact
+            {
+                FirstName = addContactViewModel.FirstName,
+                LastName = addContactViewModel.LastName,
+                Phone = addContactViewModel.Phone,
+                Email = addContactViewModel.Email,
+                FullName = $"{addContactViewModel.FirstName} {addContactViewModel.LastName }"
+
+            };
+
+
  
-            _contactService.Create(contact);
+            _contactService.Create(newContact);
 
             return Redirect("~/");
         }
 
            
-
-
 
         [HttpGet]
         [Route("Contacts/Edit/{contactId}")]
@@ -65,13 +78,17 @@ namespace Clairvoyant.Controllers
         [Route("Contacts/Delete")]
         public IActionResult Delete(string contactId)
         {
-            ViewBag.Message = "Form submitted.";
+            
             _contactService.Remove(contactId);
 
             return Redirect("~/");
         }
+
+
     }
 }
+
+
 
      
 

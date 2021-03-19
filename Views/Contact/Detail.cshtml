@@ -27,6 +27,27 @@
                     <td>@Model.Email</td>
                 </tr>
             </table>
+
+            <div class="text-md-center">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Event</th>
+                        <td>@Model.EventType.Name</td>
+                    </tr>
+                    <tr>
+                        <th>Date</th>
+                        <td>@Model.EventType.Date</td>
+                    </tr>
+                    <tr>
+                        <th>Message</th>
+                        <td>@Model.EventType.Message</td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+
             <div>
                 <p><small class="text-muted">contact created on @Model.DateCreated</small></p>
             </div>

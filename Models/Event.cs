@@ -16,6 +16,7 @@ namespace Clairvoyant.Models
         [BsonElement(elementName:"Name")]
         public string Name { get; set; }
         [BsonElement(elementName: "Date")]
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime Date { get; set; }
 
         [BsonElement(elementName: "Message")]
